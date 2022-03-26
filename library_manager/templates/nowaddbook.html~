@@ -1,0 +1,87 @@
+{% extends "p1.html" %}
+{% block content %}
+<style type="text/css">
+.ffo{
+color: white;
+}
+</style>
+<div class="container">
+<div class="row">
+<div class="col-md-10 box ">
+<form role="form" action="{{ url_for('stobook') }}" method='POST' enctype="multipart/form-data">
+<div class="form-group">
+<label class="ffo">اسم الكتاب</label>
+<input type="text" value="{{a1}}" placeholder="اسم الكتاب" readonly="" class="form-control" id="tt1" name="namebook" />
+</div>
+<div class="form-group">
+<label class="ffo">رقم الكتاب</label>
+<input type="text" placeholder="رقم الكتاب" value="{{l}}" class="form-control" name="numberbook" required="" />
+</div>
+<div class="form-group">
+<label class="ffo">مؤلف الكتاب</label>
+
+<select class="form-control" name="almolf">
+<option value="{{b2}}">{{b2}}</option>
+{% for n in f3 %}
+<option>{{n[1]}}</option>
+{% endfor %}
+</select>
+</div>
+<div class="form-group">
+<label class="ffo">التخصص</label>
+<select class="form-control" id="specialism" name="specialism"><option>{{g}}</option>
+{% for n in f1 %}
+<option>{{n[1]}}</option>
+{% endfor %}
+</select>
+<!--<input type="text" value="{{g}}" placeholder="التخصص" class="form-control" name="specialism" />-->
+</div>
+<div class="form-group">
+<label class="ffo">موضوع الكتاب</label>
+<!--<input type="text" placeholder="موضوع الكتاب" class="form-control" name="objbook" />-->
+<select class="form-control" name="objbook"><option>{{b1}}</option>
+{% for n in f9 %}
+<option value="{{n[0]}}">{{n[0]}}</option>
+{% endfor %}
+</select>
+</div>
+<div class="form-group">
+<label class="ffo">دار النشر</label>
+<input type="text" placeholder="دار النشر" value="{{b3}}" class="form-control" name="homespac" />
+</div>
+<div class="form-group">
+<label class="ffo">سنة النشر</label>
+<input type="text" placeholder="سنة النشر" value="{{b4}}" class="form-control" name="agespac" />
+</div>
+<div class="form-group">
+<label class="ffo">رابط الصورة</label>
+<input type="text" placeholder="رابط الصورة" readonly="" value="{{h}}" class="form-control" name="linkimg" />
+</div>
+<div class="form-group">
+<input type="submit" value="اضافة"   class="btn-primary btn-lg btn-block" />
+</div>
+</form>
+</div>
+<div class="col-md-2 box ">
+<a href="addbooks" class="btn-primary btn-lg btn-block" >العودة الى الصفحة السابقة</a>
+</div>
+</div></div>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

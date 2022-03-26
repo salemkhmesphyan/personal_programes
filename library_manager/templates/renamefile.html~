@@ -1,0 +1,32 @@
+{% extends "p1.html" %}
+{% block content %}
+<div class="container" id="topcon">
+<div class="row">
+<div class="col-md-10 box ">
+<form role="form" action="{{ url_for('nowrenam') }}" method='POST' enctype="multipart/form-data">
+<div class="form-group" id="tt1">
+<label class="ffo">اسم الكتاب القديم</label>
+<input type="text" value="{{c1}}" placeholder="اسم الكتاب القديم" class="form-control" id="tt1" name="ebook1"required="" />
+
+</div>
+<div class="form-group">
+<label class="ffo">اسم الكتاب الجديد</label>
+<input type="text" placeholder="اسم الكتاب الجديد"  class="form-control" name="amebook" required="" />
+</div>
+<div class="form-group">
+<input type="submit" value="تعديل الاسم"   class="btn-primary btn-lg btn-block" />
+</div>
+</form></div>
+<div class="col-md-2 box ">
+<button class="btn btn-primary" onclick="history.back();">عد الى الصفحة السابقة</button>
+</div>
+</div></div>
+
+<script>
+$('#tt1').hide();
+</script>
+
+
+
+
+{% endblock %}

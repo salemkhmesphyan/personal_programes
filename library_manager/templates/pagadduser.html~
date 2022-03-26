@@ -1,0 +1,102 @@
+{% extends "p1.html" %}
+{% block content %} 
+<div class="container">
+<div class="row">
+<div class="col-md-12 box ">
+{% for message in get_flashed_messages() %}
+    <div class="alert alert-success alert-dismissable" aria-hidden="true">
+<button type="button" class="close" data-dismiss="alert">X</button>    
+    {{ message }} </div>
+    {% endfor %}
+<br>
+<form role="form" action="{{ url_for('addbookuser2') }}" method='POST' enctype="multipart/form-data">
+<div class="form-group ">
+<label class="ffo">التخصص</label>
+<select onchange="submit()"  class="form-control" id="tybok1" name="tybok" >
+{% if f11 %}
+<option value="{{f11}}">{{f11}}</option>
+{% endif %}
+{% for post in f1 %}
+<option value="{{post[0]}}">{{post[0]}}</option>
+{% endfor %}
+</select></div>
+<div class="form-group ">
+<label class="ffo">الفرع</label>
+<select class="form-control" id="tybok2" >
+{% for post in f2 %}
+<option value="{{post[0]}}">{{post[0]}}</option>
+{% endfor %}
+</select></div>
+</form><a href="pgaddus" class="btn-primary btn-lg btn-block" >اختيار تخصص اخر</a>
+<a href="pgaddus" class="btn-primary btn-lg btn-block" >اضافة تخصص او فرع جديد</a>
+
+
+<form role="form" action="{{ url_for('pgaddus2') }}" method='POST' enctype="multipart/form-data">
+<div class="form-group">
+<label class="ffo">اسم الكتاب</label>
+<input type="text" placeholder="اسم الكتاب" readonly="" class="form-control input-sm" id="tt1" name="nabok" />
+</div>
+<div class="form-group">
+<label class="ffo">المؤلف</label>
+
+<select class="form-control"  name="alm">
+{% for j in f4 %}
+<option value="{{j[0]}}">{{j[0]}}</option>
+{% endfor %}
+</select>
+</div>
+<a href="addmolf1" class="btn-primary btn-lg btn-block">اضافة مؤلف جديد</a>
+<div class="form-group " id="f1">
+<label class="ffo">التخصص</label>
+<input type="text" name="ty" id="q1" class="form-control" />
+</div>
+<div class="form-group " id="f2">
+<label class="ffo">الفرع</label>
+<input type="text" name="bran" id="q2" class="form-control" />
+</div>
+<div class="form-group ">
+<label class="ffo">دار النشر</label>
+
+<select  name="homesp" class="form-control">
+{% for j in f3 %}
+<option value="{{j[0]}}">{{j[0]}}</option>
+{% endfor %}
+</select>
+</div>
+<a href="addmolf1" class="btn-primary btn-lg btn-block">اضافة دار نشر جديدة</a>
+<div class="form-group ">
+<label class="ffo">سنة النشر</label>
+<input type="text" name="agesp" class="form-control" />
+</div>
+<div class="form-group">
+<label>File input</label>
+<input type="file" class="btn-primary" name="data" id="tt2" />
+</div>
+<div class="form-group">
+<input type="submit" value="اضافة الكتاب" class="btn-primary btn-lg btn-block" />
+</div>
+</form>
+</div>
+</div></div>
+<script>
+var o1=$("#tybok1").val();
+var o2=$("#tybok2").val();
+$("#f1,#f2").hide();
+$("#q1").val(o1);
+$("#q2").val(o2);
+$("#tt2").change(function () {
+var t=$("#tt2").val();
+$("#tt1").val(t.substr(12,90));
+var o1=$("#tybok1").val();
+var o2=$("#tybok2").val();
+$("#q1").val(o1);
+$("#q2").val(o2);
+});
+$("#tybok2").change(function () {
+var o1=$("#tybok1").val();
+var o2=$("#tybok2").val();
+$("#q1").val(o1);
+$("#q2").val(o2);
+});
+</script>
+{% endblock %}

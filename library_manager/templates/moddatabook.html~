@@ -1,0 +1,46 @@
+{% extends "p1.html" %}
+{% block content %}
+<style type="text/css">
+#oo:hover{
+text-decoration: none;
+border:2px solid blue;
+}
+img:hover{
+border:2px solid blue;
+}
+</style>
+<div class="container">
+<div class="row">
+
+<div class="col-md-10 box ">
+<form role="form" action="{{ url_for('moddatbok2') }}" method='POST' enctype="multipart/form-data">
+<div class="form-group">
+<label class="ffo">اسم الكتاب المراد تعديلة</label>
+<input type="text" placeholder="اسم الكتاب" class="form-control" name="namebook" />
+</div>
+<div class="form-group">
+<input type="submit" class="btn-primary btn-lg btn-block" value="بحث" />
+</div>
+</form></div>
+<div class="row">
+<div class="col-md-12 box ">
+{% for message in get_flashed_messages() %}
+    <div class="alert alert-success alert-dismissable text-center" aria-hidden="true">
+<button type="button" class="close" data-dismiss="alert">X</button>    
+    <span class="badge">{{ message }}</span></div>
+    {% endfor %}
+    {% for post in df %}     
+        <span style="background-color: blanchedalmond; float: right;margin: 2px;padding: 1px;"> 
+ <a id="oo" href="moddatbok3{{post[1] }}"><img src="{{post[8]}}" width="200" height="200"  /><br>{{post[1] }} </a>      
+        </span>
+        {%endfor%}
+
+
+</div>
+<div class="col-md-2 box ">
+<button class="btn-primary btn-lg btn-block" onclick="history.back();" >العودة الى الصفحة السابقة</button>
+</div>
+</div></div>
+
+
+{% endblock %}

@@ -1,0 +1,20 @@
+<html>
+<head>
+<title>yy</title>
+</head>
+<body><h1 align="center">تسجيل عضوا جديد</h1>
+<br><br>
+ {% for message in get_flashed_messages() %}
+    <div class="flash"> <font size=10>{{ message }}</font> </div>
+    {% endfor %}
+<br><br>
+<form action="{{ url_for('chklog') }}" method='POST'>
+        <input type="email" placeholder="اسم المُستخدم" name="username">
+        <input type="password" placeholder="كلمة المرور" name="password">
+        <input type="submit" value="اُدخُل">
+    </form>  
+<br>
+<h1>back the main page <a class="logout" href="{{ url_for('home') }}"><font size=10>back</font></a></h1>
+</body>
+</html>
+

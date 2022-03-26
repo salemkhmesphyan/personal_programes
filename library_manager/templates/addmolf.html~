@@ -1,0 +1,47 @@
+{% extends "p1.html" %}
+{% block content %}
+
+
+<div class="container">
+<div class="row">
+<div class="col-md-5 box ">
+{% for message in get_flashed_messages() %}
+    <div class="alert alert-success alert-dismissable" aria-hidden="true">
+<button type="button" class="close" data-dismiss="alert">X</button>    
+    {{ message }} </div>
+    {% endfor %}
+<div class="form-group ">
+    <form action="{{ url_for('addmolf2') }}" class="navbar-form navbar-right" method='POST'>
+        <input type="text" placeholder="اسم المؤلف" name="wri"  class="form-control" required="" >
+        <input type="text" placeholder="معلومات حول المؤلف" name="infw"  class="form-control" required="" >
+        <input type="submit" value="اضافة مؤلف جديد" class="btn btn-success btn-sm" >
+    </form>   </div></div>
+<div class="col-md-5 box ">    
+<div class="form-group ">
+    <form action="{{ url_for('addhouse') }}" class="navbar-form navbar-right" method='POST'>
+        <input type="text" placeholder="اسم دار النشر" name="nhous"  class="form-control" required="" >
+        <input type="text" placeholder="معلومات حول دار النشر" name="infhous"  class="form-control" required="" >
+        <input type="submit" value="اضافة دار النشر جديدة" class="btn btn-success btn-sm" >
+    </form>   </div></div>
+    <div class="col-md-2 box ">
+<button class="btn btn-primary" onclick="history.back();">عد الى الصفحة السابقة</button>
+</div>
+
+
+
+</div></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

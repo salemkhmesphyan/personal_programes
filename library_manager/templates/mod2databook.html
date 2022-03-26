@@ -1,0 +1,102 @@
+{% extends "p1.html" %}
+{% block content %}
+<div class="container">
+<div class="row">
+
+<div class="col-md-10 box ">
+<form role="form" action="{{ url_for('moddatbok4') }}" method='POST' enctype="multipart/form-data">
+
+<div class="form-group">
+<label class="ffo">اسم الكتاب الجديد</label>
+<input type="text" value="" placeholder=" اسم الكتاب الجديد" class="form-control" name="namebook1" required=""/>
+</div>
+{% for n in df %}
+<input type="text" value="{{n[1]}}" id="oldname" placeholder="اسم الكتاب" class="form-control" name="namebook0" />
+{% endfor %}
+<div class="form-group">
+<label class="ffo">المؤلف</label>
+<select class="form-control" name="namebook2">
+{% for n in df %}
+<option value="{{n[3]}}">{{n[3]}}</option>
+{% endfor %}
+{% for n in f3 %}
+<option value="{{n[1]}}">{{n[1]}}</option>
+{% endfor %}
+</select>
+</div>
+<div class="form-group">
+<label class="ffo">التخصص</label>
+
+<select class="form-control" name="namebook3">
+{% for n in df %}
+<option value="{{n[4]}}">{{n[4]}}</option>
+{% endfor %}
+{% for n in f1 %}
+<option value="{{n[1]}}">{{n[1]}}</option>
+{% endfor %}
+</select>
+
+</div>
+<div class="form-group">
+<label class="ffo">الفرع</label>
+
+
+<select class="form-control" name="namebook4">
+{% for n in df %}
+<option value="{{n[5]}}">{{n[5]}}</option>
+{% endfor %}
+{% for n in f2 %}
+<option value="{{n[1]}}">{{n[1]}}</option>
+{% endfor %}
+</select>
+
+</div>
+<div class="form-group">
+<label class="ffo">دار النشر</label>
+
+
+<select class="form-control" name="namebook5">
+{% for n in df %}
+<option value="{{n[6]}}">{{n[6]}}</option>
+{% endfor %}
+{% for n in f4 %}
+<option value="{{n[1]}}">{{n[1]}}</option>
+{% endfor %}
+</select>
+
+</div>
+<div class="form-group">
+<label class="ffo">سنة النشر</label>
+{% for n in df %}
+<input type="text"  value="{{n[7]}}" placeholder="سنة النشر" class="form-control" name="namebook6" />
+</div>
+{% endfor %}
+
+<div class="form-group">
+<input type="submit" class="btn-primary btn-lg btn-block" value="تعديل" />
+</div>
+</form>
+{% for n in df %}
+<a href="ddb{{n[1]}}" onclick="mm()"  class="btn-primary btn-lg btn-block text-center">حذف الكتاب</a>
+{% endfor %}
+</div>
+<div class="col-md-2 box ">
+<button class="btn-primary btn-lg btn-block" onclick="history.back();" >العودة الى الصفحة السابقة</button>
+</div>
+</div></div>
+<script>
+$("#oldname").hide();
+
+function mm() {
+var h=window.confirm("هل انته متاكد من هذا العمل");
+ if (h==false) {
+ 	event.preventDefault();
+ }	
+ 
+
+}
+
+</script>
+
+
+{% endblock %}

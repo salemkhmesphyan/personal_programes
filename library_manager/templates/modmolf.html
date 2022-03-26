@@ -1,0 +1,61 @@
+{% extends "p1.html" %}
+{% block content %}
+
+   <div class="container" >
+<div class="row">
+<div class="col-md-5 box ">
+{% for message in get_flashed_messages() %}
+    <div class="alert alert-success alert-dismissable" aria-hidden="true">
+<button type="button" class="close" data-dismiss="alert">X</button>    
+    {{ message }} </div>
+    {% endfor %}
+<form role="form" action="{{url_for('modwriten2')}}" method='POST' enctype="multipart/form-data">
+<div class="form-group">
+<label class="ffo">:اختار المؤلف</label>
+<select class="form-control" name="smw1">
+{% for h in se %} 
+<option value="{{h[1]}}">{{h[1]}}</option>
+{% endfor %}
+</select>
+</div>
+<div class="form-group">
+<label class="ffo">:اسم المؤلف</label> 
+<input type="text" class="form-control" placeholder="اسم المؤلف الجديد" name="smw2" required=""  />
+</div>
+<div class="form-group">
+<label class="ffo">:المعلومات الجديدة</label> 
+<input type="text" class="form-control" placeholder="المعلومات الجديدة" name="smw3" required=""   />
+</div>
+<div class="form-group">
+<input type="submit" class="btn-primary btn-lg btn-block" value="تعديل في معلومات المؤلف" />
+</div>
+</form></div>
+
+<div class="col-md-5 box ">
+<form role="form" action="{{url_for('modhous')}}" method='POST' enctype="multipart/form-data">
+<div class="form-group">
+<label class="ffo">:اختار دار النشر</label>
+<select class="form-control" name="smh1">
+{% for h in pl %} 
+<option value="{{h[1]}}">{{h[1]}}</option>
+{% endfor %}
+</select>
+</div>
+<div class="form-group">
+<label class="ffo">:اسم دار النشر الجديدة</label> 
+<input type="text" class="form-control" placeholder="اسم دار النشر الجديد" name="smh2" required=""  />
+</div>
+<div class="form-group">
+<label class="ffo">:المعلومات الجديدة</label> 
+<input type="text" class="form-control" placeholder="المعلومات الجديدة" name="smh3" required=""   />
+</div>
+<div class="form-group">
+<input class="btn-primary btn-lg btn-block" type="submit" value="تعديل في معلومات دار النشر" />
+</div>
+</form></div>
+<div class="col-md-2 box ">
+<button class="btn-primary btn-lg btn-block" onclick="history.back();">العودة الى الصفحة السابقة</button>
+</div>
+</div></div>
+
+{% endblock %}

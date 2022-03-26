@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset='utf-8' >
+<meta http-equiv="X-UA-Compatible" content="IE=	edge"  >
+<meta  name="viewport" content="eidth=dvice-width, initial-scale=1" >
+
+<title>{{t}}</title>
+<link href="static/css/bootstrap.min.css" rel="stylesheet" />
+<script src="static/js/jquery.min.js" ></script>
+<script src="static/js/bootstrap.min.js"></script>
+<style type="text/css">
+
+
+.box{
+background-color: #d3d3d3;
+
+border-radius:5px;
+
+}
+div .topcon{
+background-image: url("static/img/top.jpg");
+height: 80px;
+width: 80px;
+background-size: cover;
+border-radius:5px; 
+
+}
+
+
+</style>
+</head>
+<body onload="sum()" style="font-family:Times New Roman">
+<div class="navbar navbar-inverse">
+<div class="container">
+<div class="navbar-header">
+<a href="/" class="navbar-brand topcon"></a>
+<button type="button" class="navbar-toggle" data-toggle='collapse' data-target=".navbar-collapse" >
+<span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+</button>
+</div>
+<div class="collapse navbar-collapse">
+<ul class="nav navbar-nav">
+<li><a href="/" >الصفحة الرئيسية</a></li>
+{% if pp3=='tr' %}
+<li><a href="pageaddroot" >اضافه كتاب من المشرف</a></li>
+
+<li><a href="lowroot" >صلاحيات المشرف</a></li>
+<li><a href="admin" >admin</a></li>
+{% endif %}
+<!--<li><a href="showbook" >عرض الكتب</a></li>-->
+<li><a href="searchp1" >بحث عن كتاب</a></li>
+{% if pp3=='y' %}
+<li><a href="pgaddus" >اضافة كتاب من المستخدم</a></li>
+{% endif %}  
+</ul>
+{% if 'logged_in' not in session %}
+<div class="form-group">
+    <form action="{{ url_for('login') }}" class="navbar-form navbar-right" method='POST'>
+        <input type="text" placeholder="اسم المُستخدم" id="npp1" name="username" class="form-control" required="">
+        <input type="password" placeholder="كلمة المرور" id="ppp1" name="password" class="form-control" required="">
+        <input type="submit" value="تسجيل الدخول" class="btn btn-success" >
+    </form></div>
+    
+<div class="form-group ">
+    <form action="{{ url_for('addlog') }}" class="navbar-form navbar-right" method='POST'>
+        <input type="text" placeholder="اسم المُستخدم" name="username" id="nn" class="form-control" required="">
+        <input type="password" placeholder="كلمة المرور" name="password" id="np" class="form-control" required="">
+        <input type="submit" id="suid" value="اضافة حساب جديد" class="btn btn-success">
+    </form>   </div>
+    
+{% else %}
+        <!--<a class="navbar-form navbar-right"  href="{{ url_for('err') }}"><font size=10>{{session['logged_in']}}<img src="static/img/4.png" class="img-circle" width="100" height="100" alt="salem"/> </font></a>-->       
+       <a class="navbar-form navbar-right" id="yy" title="wellcom {{session['logged_in']}}" href="{{ url_for('err') }}" style="text-decoration:none;" ><font size=10 id="ff">{{session['logged_in']}}</font><span id="rr" style="padding:5px;background-color:#F10994;color:white;border-radius:100px;font-size:50px;width:300px;height:300px;"></span></a><span class="navbar-form navbar-right badge" style="background-color:#F10994;"><a  href="{{ url_for('logout') }}" style="color:white;">تسجيل الخروج</a></span> 
+{% endif %}
+
+</div>
+</div></div>
+<div class="container-fluid ">
+<div class="row">
+<div class="col-md-12" >
+<form class="bs-example bs-example-form form-group" role="form" action="{{url_for('serinmin')}}" method='POST' enctype="multipart/form-data">
+<div class="input-group input-group-lg">
+
+
+<input type="text" name="ll1" class="form-control input-lg" placeholder="اسم الكتاب\او المؤلف">
+<span class="input-group-btn"><button class="btn btn-success btn-sm">بحث عام</button></span>
+</div>
+
+</form>
+
+</div>
+
+</div>
+</div>
+{% block content %}
+
+
+{% endblock %}
+
+<div class="panel panel-default">
+  <div class="panel-body">
+  
+  
+  
+<div class="container-fluid ">
+<div class="row">
+<div class="col-md-4 text-left">  
+  <span class="btn btn-info btn-lg"  id="op1">معلومات عن المشروع</span>
+<p id="op2" class="label-info" style="color:white;">المكتبة الالكترونية عبارة عن مشروع مصغر يهدف الى نشر الوعي الثقافي بين الطلاب وتسهيل الحصول على المصادر العلمية بسهولة</p>  
+  </div><div class="col-md-4 text-center" ><span class="btn btn-primary btn-lg" id="b8">الطلاب المشاركين في المشروع مع المشرف</span>
+<ul id="b9" class="list-unstyled label-primary" style="color:white;"><li>سالم خميس بهيان</li><li>عبدالعزيز الغرابي</li><li>محمد باجفيش</li><li>محمد باسندوة</li><li><u>المشرف</u></li><li>الاستاذ وضاح سبتي</li></ul>  
+  </div><div class="col-md-4 text-right" ><span class="btn btn-danger btn-lg" id="b0">ملاحظات مهمة</span>
+<ul class="list-unstyled label-danger" id="b1" style="color:white;">
+<li>هذة المكتبة لا تستقبل ملفات غير بي دي اف</li>
+<li>عند اضافة اي كتاب يجب كتابة المعلومات الاساسية عن الكتاب مثل التخصص والفرع</li>
+<li>يرجاء عدم اضافة اكثر من حساب للمستخدم</li>
+<li>يرجاء عدم اضافة الكتاب مرة اخرى</li>
+</ul>  
+  </div>
+
+</div>
+ </div>   
+</div>
+  
+  <div class="panel-footer">
+  <!--<p class="lead">panl foter</p>-->
+
+
+  <div class="container" style="margin:2px;">
+<div class="row">
+<div class="col-md-12 foo-inner">
+<center><b  id="f" class="success" data-wow-delay="0.6s">...</b><b  class="success">:الوقت الان</b><center>
+<br>
+<b>Copyright © 2021-2022/tenth group/computer engineering/Fourth level.all rights reserved.</b>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+<script>
+
+$("#nn").hide();
+$("#np").hide();
+var f0=$("#bb1").val();
+if (f0=='') {
+	$("#bb1").hide();
+	
+};
+/*function dis() {
+if (($("#nn").val()!='') && ($("#np").val()!='')) {
+	$("#suid").removeAttr("disabled");
+}
+else {
+	$("#suid").attr("disabled","disabled");
+}
+setTimeout("dis()",1);}*/
+$("#npp1").change(function () {
+$("#nn").val($("#npp1").val());
+$("#np").val($("#ppp1").val());	
+});
+$("#ppp1").change(function () {
+$("#nn").val($("#npp1").val());
+$("#np").val($("#ppp1").val());
+	
+});
+function sum(){
+    var g=new Date();	
+   
+    $("#f").html(g.toLocaleString());
+   
+    
+    
+    setTimeout("sum()",1);}
+    
+$("#op1").click(function () {
+	$("#op2").toggle(2000);
+});
+$("#b8").click(function () {
+	$("#b9").toggle(2000);
+});
+$("#b0").click(function () {
+	$("#b1").toggle(2000);
+});
+$("#suid").click(function () {
+	if(($("#npp1").val()=='')|($("#ppp1").val()=='')){
+alert("املا كل الفراغات")	
+	}
+	
+});
+$("#op2").hide();
+$("#b9").hide();
+$("#b1").hide();
+
+</script>
+
+<script>
+var f=document.getElementById("ff").innerText;
+document.getElementById("rr").innerHTML=f.substr(0,5);
+document.getElementById("ff").innerHTML="";
+
+//document.getElementById("rr").style="border-radius:10px ";
+//document.getElementById("rr").style="background-color:green";
+//document.getElementById("rr").style="font-size:40px;";
+//document.getElementById("rr").styleSheetSets="font-size:40px;background-color:green;";
+//document.getElementById("sam").style="display:none;";
+var u= document.getElementById("fg");
+</script>
+</body> 
+</html>

@@ -1,0 +1,108 @@
+{% extends "p1.html" %}
+{% block content %}
+<style type="text/css">
+#oo:hover{
+text-decoration: none;
+border:2px solid blue;
+}
+img:hover{
+border:2px solid blue;
+}
+</style>
+<div class="container" >
+<div class="row">
+<div class="col-md-12 box ">
+<center><h1>صفحة البحث</h1></center>
+<form role="form" action="{{ url_for('serr1') }}" method='POST' >
+<div class="form-group">
+<label>نوع البحث</label><select class="form-control" id='s1' name="s11" ><option>خاص</option>
+<option>عام</option>
+</select>
+</div>
+<div id="d1" class="form-group">
+<label>القسم</label>
+
+<select onchange="submit()" class="form-control" id="s2" name="s22">
+{% if f11 %}
+<option value="{{f11}}">{{f11}}</option>
+{% endif %}
+    {% for post in f1 %}     
+<option value="{{post[0]}}">{{post[0]}}</option>
+{%endfor%}
+</select>
+</div>
+<div id="d2" class="form-group">
+<label>راس الموضوع</label>
+<select id="s3" class="form-control" name="s33">
+{% for post in f2 %} 
+<option value="{{post[0]}}">{{post[0]}}</option>
+{%endfor%}
+</select>
+</div>
+</form><a href="searchp1" id="ll1" class="btn-primary btn-lg btn-block" >اختيار تخصص اخر</a>
+<form role="form" action="{{ url_for('searchp2') }}" method='POST' >
+<input type="text" class="form-control" name="s11" id="o1" />
+<input type="text" class="form-control" name="s22" id="o2"/>
+<input type="text" class="form-control" name="s33"id="o3" />
+
+<div class="form-group">
+<label>كلمة البحث</label><input type="text" name="s44" class="form-control"/>
+</div>
+<div class="form-group">
+<input type="submit" class="btn-primary btn-lg btn-block" value="بحث"></div>
+</form></div></div>
+<div class="row">
+<div class="col-md-12 box ">
+{% for message in get_flashed_messages() %}
+    <div class="alert alert-success alert-dismissable text-center" aria-hidden="true">
+<button type="button" class="close" data-dismiss="alert">X</button>    
+    <span class="badge">{{ message }}</span><span>'{{s4}}'</span>عدد نتائج البحث عن</div>
+    {% endfor %}
+    {% for post in se %}     
+        <span style="background-color: blanchedalmond; float: right;margin: 2px;padding: 1px;"> 
+ <a id="oo" href="sh1{{post[1] }}"><img src="{{post[8]}}" width="200" height="200"  /><br>{{post[1] }} </a>      
+        </span>
+        {%endfor%}
+    
+</div>
+</div></div>
+
+<script>
+$("#o1").val($("#s1").val());
+$("#o2").val($("#s2").val());
+$("#o3").val($("#s3").val());
+$("#o3,#o1,#o2").hide()
+$("#s3").change(function () {
+
+$("#o1").val($("#s1").val());
+$("#o2").val($("#s2").val());
+$("#o3").val($("#s3").val());
+});
+$("#s1").change(function () {
+
+$("#o1").val($("#s1").val());
+$("#o2").val($("#s2").val());
+$("#o3").val($("#s3").val());
+});
+
+
+
+$("#s1").change(function () {
+var a=$("#s1").val();
+
+	if (a=='عام') {
+	$("#d1").hide(2000);
+$("#d2").hide(2000);
+$("#ll1").hide(2000);	
+	}
+	if(a=="خاص"){
+	$("#d1").show(2000);
+	$("#d2").show(2000);
+	$("#ll1").show(2000);		
+		}
+});
+
+</script>
+{% endblock %}
+{% block content1 %}
+{% endblock %}

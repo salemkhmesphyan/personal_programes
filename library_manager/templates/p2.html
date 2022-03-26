@@ -1,0 +1,27 @@
+{% extends "p1.html" %}
+{% block content %}
+
+<style type="text/css">
+#oo:hover{
+text-decoration: none;
+border:2px solid blue;
+}
+img:hover{
+border:2px solid blue;
+}
+</style>
+<div class="container">
+<div class="row">
+<div class="col-md-12 box ">
+{% for post in sh %}     
+        <span style="background-color: blanchedalmond; margin: 2px;padding: 1px;"class="pull-right"> 
+ <a id="oo" href="{{post['nambook'] }}"><img src="{{post['linkimg']}}" width="200" height="200" class="img-thumbnail" /><br>{{post['nambook'] }} </a>      
+        
+        </span>
+        
+        {%endfor%}
+        <br>
+        
+ </div></div></div>         
+
+{% endblock %}

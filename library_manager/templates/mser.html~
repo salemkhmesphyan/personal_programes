@@ -1,0 +1,30 @@
+{% extends "p1.html" %}
+{% block content %}
+
+
+<style type="text/css">
+#oo:hover{
+text-decoration: none;
+border:2px solid blue;
+}
+img:hover{
+border:2px solid blue;
+}
+</style>
+
+<div class="container">
+<div class="row">
+<div class="col-md-12 box ">
+<h1 align="center"><span class="badge">{{pl}}</span><span>'{{gm}}'</span>:نتائج البحث عن </h1>
+<hr>
+{% for post in se %}     
+        <span style="background-color: blanchedalmond; float: right;margin: 2px;padding: 1px;border:2px solid #9929E0;"> 
+ <a id="oo" href="sh1{{post[1] }}"><img src="{{post[8]}}" width="200" height="200"  /><br>{{post[1] }} </a>      
+        </span>
+        {%endfor%}
+        
+        
+ </div></div></div>
+
+
+{% endblock %}

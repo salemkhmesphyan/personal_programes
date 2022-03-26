@@ -1,0 +1,82 @@
+{% extends "p1.html" %}
+{% block content %}
+<style type="text/css">
+.box{
+border-color: black;
+
+}
+</style>
+<div class="container tyy">
+<!--<div class="row">
+<div class="col-md-12 box text-center"style="font-size: 30px;">
+<big>wellcom:{{ff}}</big>
+</div>
+</div>-->
+<div class="row">
+<div class="col-md-4 box text-center" style="font-size: 30px;overflow: scroll;">
+   <big>{{ff}}:مرحبا</big><br>
+   <h1>تفاصيل حسابك</h1>
+   <hr>
+   <table class="table table-striped table-bordered">
+   <tr><td>كلمة المرور</td><td>اسم المستخدم</td></tr> 
+   <tr><td><input type="text" value="{{tt}}" readonly="" /></td><td>{{ff}}</td></tr>  
+   </table>
+       
+</div>
+
+
+
+<div class="col-md-4 box">
+{% for message in get_flashed_messages() %}
+    <div class="alert alert-success alert-dismissable" aria-hidden="true">
+<button type="button" class="close" data-dismiss="alert">X</button>    
+    {{ message }} </div>
+    {% endfor %}
+<h1 align="center">تعديل البيانات</h1>
+<hr><!--  action="{{ url_for('moduser') }}"  -->
+<form role="form" action="{{ url_for('moduser') }}"  method='POST' enctype="multipart/form-data">
+{% if ff=='admin' %}
+
+<div class="form-group">
+<input type="text" placeholder="اسم المستخدم" value="{{ff}}" class="form-control" id="tt1" name="n1" readonly="" required=""/>
+</div>
+
+<div class="form-group">
+<input type="text" placeholder="كلمة المرور الجديدة" class="form-control" name="p1" required="" />
+</div>
+{% else %}
+<div class="form-group">
+<input type="text" placeholder="اسم المستخدم" value="{{ff}}" class="form-control" id="tt1" name="n1" required=""/>
+</div>
+<div class="form-group">
+<input type="text" placeholder="كلمة المرور الجديدة"  class="form-control" name="p1" required="" />
+</div>
+{% endif %}
+<div class="form-group">
+<input type="submit" id="ii" onclick="mm()" value="تعديل البيانات"   class="btn-primary btn-lg btn-block" />
+</div>
+</form>
+</div>
+
+<div class="col-md-4 box">
+<a class="btn-primary btn-lg btn-block" style="text-decoration: none;" href="{{ url_for('login1') }}"><font size=10>العودة الى الصفحة الرئيسية</font></a>
+<a class="btn-primary btn-lg btn-block" style="text-decoration: none;" onclick="mm()" href="{{ url_for('deluser') }}" ><font size=10>حذف الحساب</font></a>
+<a class="btn-primary btn-lg btn-block" style="text-decoration: none;" href="{{ url_for('logout') }}" ><font size=10>تسجيل الخروج</font></a>
+</div>
+
+</div>
+</div>
+<script>
+function mm() {
+var h=window.confirm("do you test?");
+ if (h==false) {
+ 	event.preventDefault();
+ }	
+ 
+
+}
+</script>
+
+{% endblock %}
+
+

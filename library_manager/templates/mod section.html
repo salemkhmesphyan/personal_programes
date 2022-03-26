@@ -1,0 +1,52 @@
+{% extends "p1.html" %}
+{% block content %}
+<div class="container">
+<div class="row">
+<div class="col-md-5 box text-center">
+{% for message in get_flashed_messages() %}
+    <div class="alert alert-danger alert-dismissable" aria-hidden="true">
+<button type="button" class="close" data-dismiss="alert">X</button>    
+    {{ message }} </div>
+    {% endfor %}
+<h1>تعديل القسم</h1>
+<hr>
+ <form role="form" action="{{ url_for('modsection2') }}" method='POST' enctype="multipart/form-data">
+ <div class="form-group">
+       <select name="smodc1" class="form-control">
+{% for h in se %}       
+       <option value="{{h[1]}}">{{h[1]}}</option>
+{% endfor %}       
+       </select>
+        </div>
+        <div class="form-group">
+        <input type="text" placeholder="القسم الجديد"  name="smodc2" class="form-control" required="">
+        </div>
+        <div class="form-group">
+        <input type="submit" value="تعديل القسم" class="btn btn-success" >
+        </div>
+    </form></div>
+<div class="col-md-5 box text-center">
+<h1>تعديل الفرع</h1>
+<hr>
+<form role="form" action="{{ url_for('modbranch') }}" method='POST' enctype="multipart/form-data">
+ <div class="form-group">
+       <select name="smodb1" class="form-control">
+       {% for h in pl %}       
+       <option value="{{h[1]}}">{{h[1]}}</option>
+{% endfor %} 
+       
+       </select>
+        </div>
+        <div class="form-group">
+        <input type="text" placeholder="الفرع الجديد" id="ppp1" name="smodb2" class="form-control" required="">
+        </div>
+        <div class="form-group">
+        <input type="submit" value="تعديل الفرع" class="btn btn-success" >
+        </div>
+    </form></div>
+    <div class="col-md-2 box ">
+<button class="btn-primary btn-lg btn-block" onclick="history.back();" >العودة الى الصفحة السابقة</button>
+</div>
+    </div></div>
+
+{% endblock %}

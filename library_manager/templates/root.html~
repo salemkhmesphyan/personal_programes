@@ -1,0 +1,79 @@
+{% extends "p1.html" %}
+{% block content %}
+<style type="text/css">
+.box1{
+background-color: rgba(0,255,0,0.3);
+}
+</style>
+<div class="container tyy" id="topcon">
+<div class="row">
+<div class="col-md-4 box1">
+
+<h1>خيارات متعددة</h1>
+<hr>
+<a href="pageaddroot" class="btn-primary btn-lg btn-block" >اضافة كتاب جديد</a>
+<a href="addbooks" class="btn-primary btn-lg btn-block" ><span class="badge text-right">{{g1}}</span>كتب مضافة</a>
+<a href="moddatbok1" class="btn-primary btn-lg btn-block" >تعديل في معلومات الكتاب</a>
+<a href="runuser" class="btn-primary btn-lg btn-block" >ادارة حسابات المستخدمين</a>
+<a href="addmolf1" class="btn-primary btn-lg btn-block" >اضافة مؤلف او دار نشر</a>
+<a href="modsection" class="btn-primary btn-lg btn-block" >تعديل القسم او الفرع</a>
+<a href="modwriten1" class="btn-primary btn-lg btn-block" >تعديل المولف او دار النشر</a>
+<a href="rep" class="btn-primary btn-lg btn-block" >report</a>
+
+</div>
+<div class="col-md-4 box1">
+
+{% for message in get_flashed_messages() %}
+    <div class="alert alert-success alert-dismissable" aria-hidden="true">
+<button type="button" class="close" data-dismiss="alert">X</button>    
+    {{ message }} </div>
+    {% endfor %}
+
+<h1>اضافة مشرف جديد</h1>
+<hr>
+<form role="form" action="{{ url_for('addroot') }}" method='POST' enctype="multipart/form-data">
+<div class="form-group">
+<input type="text" placeholder="اسم المشرف" class="form-control" id="tt1" name="adn" required="" />
+</div>
+<div class="form-group">
+<input type="password" placeholder="كلمة المرور" class="form-control" name="adp" required="" />
+</div>
+<div class="form-group">
+<input type="submit" value="اضافة"   class="btn-primary btn-lg btn-block" />
+</div>
+</form>
+<a href="addsec" class="btn-primary btn-lg btn-block">اضافة قسم او فرع</a>
+</div>
+<div class="col-md-4 box1">
+<h1>تعديل في بيانات المشرف</h1>
+<hr>
+<form role="form" action="{{ url_for('modroot') }}" method='POST' enctype="multipart/form-data">
+<div class="form-group">
+{% for n in ff1 %} 
+<input type="text" placeholder="اسم المشرف" value="{{n['username']}}" class="form-control" id="tt1" name="nroot" required="" />
+</div>
+<div class="form-group">
+<input type="text" placeholder="كلمة المرورالجديدة"  class="form-control" name="proot" required="" />
+</div>
+<div class="form-group">
+
+<select class="form-control" name="rroot">
+<option>yes</option>
+<option>no</option>
+</select>
+</div>
+
+<div class="form-group">
+<input type="submit" value="حفظ التعديلات" class="btn-primary btn-lg btn-block" />
+</div>
+{% endfor %}
+</form>
+</div>
+<!--<div class="col-md-2 box"></div>-->
+</div>
+</div>
+
+
+
+
+{% endblock %}

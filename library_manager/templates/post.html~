@@ -1,0 +1,57 @@
+{% extends "p1.html" %}
+{% block content %}
+<style type="text/css">
+#oo:hover{
+text-decoration: none;
+border:2px solid blue;
+}
+img:hover{
+border:2px solid blue;
+}
+</style>
+<div class="container-fluid">
+<div class="row">
+<div class="col-md-2 box text-center" style="margin-right: 5px;">
+<h3><u>:اصناف الكتب المتوفرة</u></h3>
+<br>
+ {% for y in pmin %}
+      <p><a href="seci{{y[1]}}" class="btn btn-primary btn-lg">{{y[1]}}</a></p>
+      {% endfor %}
+   <br>
+   <h3 class="text-right"><u>:المؤلفين والناشرين</u></h3>
+   <br>
+   <a href="showwrit" class="btn btn-primary btn-lg">المؤلفين</a>
+      <a href="showspac" class="btn btn-primary btn-lg">الناشرين</a>   
+</div>
+<div class="col-md-9 box text-center" style="margin-left: 9px;">
+{% for message in get_flashed_messages() %}
+    <div class="alert alert-danger alert-dismissable" aria-hidden="true">
+<button type="button" class="close" data-dismiss="alert">X</button>    
+    {{ message }} </div>
+    {% endfor %}
+     
+      <marquee bgcolor="blur" DIRECTION="right" ALIGN="top" LOOP="0"> <h1 style="font-family:Times New Roman;color: white;">مرحبا بك في المكتبة الالكترونية</h1></marquee>
+      <br>
+      <ul class="list-unstyled label-success" style="font-size:20px;color:white; "> 
+<li class="label-primary">القراة تجعلنا نشتاق أكثر للأشياء التي نجهلها</li> 
+
+<li class="label-primary">نقرا لنعيش مرتين</li>
+    
+      </ul>
+     
+
+
+
+      <h3 class="text-right"><u>:الكتب الحديثة</u></h3>
+<div style="float: right;">
+{% for post in df5 %} 
+    
+        <span style="background-color: blanchedalmond; float: right;margin: 2px;padding: 1px;border:2px solid #9929E0;"> 
+ <a id="oo" href="sh1{{post['nambook'] }}"><img alt="{{post['nambook'] }}" class="img-rounded" src="{{post['linkimg']}}" width="200" height="200"  /><br>{{post['nambook'] }} </a>      
+        </span>
+        {%endfor%}
+   </div>
+      
+     
+</div></div></div>
+{% endblock %}

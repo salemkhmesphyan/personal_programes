@@ -1,0 +1,116 @@
+{% extends "p1.html" %}
+{% block content %}
+{% for message in get_flashed_messages() %}
+    <div class="alert alert-success alert-dismissable" aria-hidden="true">
+<button type="button" class="close" data-dismiss="alert">X</button>    
+    {{ message }} </div>
+    {% endfor %}
+<div class="container" >
+<div class="row">
+<div class="col-md-10 box ">
+<form role="form" action="{{ url_for('addbookroot') }}" method='POST' enctype="multipart/form-data">
+<div class="form-group ">
+<label class="ffo">التخصص</label>
+<select onchange="submit()"  class="form-control" id="tybok1" name="tybok" >
+{% if f11 %}
+<option value="{{f11}}">{{f11}}</option>
+{% endif %}
+{% for post in f1 %}
+<option value="{{post[0]}}">{{post[0]}}</option>
+{% endfor %}
+</select></div>
+<div class="form-group ">
+<label class="ffo">الفرع</label>
+<select class="form-control" id="tybok2" >
+{% for post in f2 %}
+<option value="{{post[0]}}">{{post[0]}}</option>
+{% endfor %}
+</select></div>
+</form><a href="pageaddroot" class="btn-primary btn-lg btn-block" >اختيار تخصص اخر</a>
+
+
+
+
+
+
+<form role="form" action="{{url_for('addbook')}}" method='POST' enctype="multipart/form-data">
+<div class="form-group">
+<label class="ffo">:اختار الكتاب</label>
+<input type="file" class="form-control" id="tt1" name="chose" required="" />
+</div>
+<div class="form-group">
+<label class="ffo">اسم الكتاب</label>
+<input type="text" placeholder="اسم الكتاب" readonly="" class="form-control" id="tt2" name="namebook" />
+</div>
+<div class="form-group">
+<label class="ffo">رقم الكتاب</label>
+<input type="text" placeholder="رقم الكتاب" value="{{y}}" class="form-control" name="numberbook" readonly="" />
+</div>
+<div class="form-group">
+<label class="ffo">مؤلف الكتاب</label>
+<select class="form-control" name="almolf" >
+{% for f in mol %}
+<option value="{{f[1]}}">{{f[1]}}</option>
+{% endfor %}
+</select>
+</div>
+<div id="f1" class="form-group">
+<label>القسم</label>
+<input type="text" class="form-control" id="q1" name="specialism">
+</div>
+<div id="f2" class="form-group">
+<label>راس الموضوع</label>
+<input type="text" id="q2" class="form-control" name="objbook">
+</div>
+
+<div class="form-group">
+<label class="ffo">دار النشر</label>
+<select class="form-control" name="homespac" />
+{% for u in pup %}
+<option value="{{u[1]}}">{{u[1]}}</option>
+{% endfor %}
+</select>
+</div>
+<div class="form-group">
+<label class="ffo">سنة النشر</label>
+<input type="text" placeholder="سنة النشر" class="form-control" name="agespac" />
+</div>
+<div class="form-group">
+<label class="ffo">رابط الصورة</label>
+<input type="text" placeholder="رابط الصورة" id="im" readonly="" class="form-control" name="linkimg" />
+</div>
+<div class="form-group">
+<input type="submit" value="اضافة"  class="btn-primary btn-lg btn-block" />
+</div>
+</form>
+</div>
+<div class="col-md-2 box ">
+<button class="btn-primary btn-lg btn-block" onclick="history.back();" >العودة الى الصفحة السابقة</button>
+</div>
+</div></div>
+<script>
+var o1=$("#tybok1").val();
+var o2=$("#tybok2").val();
+$("#f1,#f2").hide();
+$("#q1").val(o1);
+$("#q2").val(o2);
+var y=$("#tt1").change(function () {
+	$("#tt2").val($("#tt1").val().substr(12,90));
+var g=$("#tt1").val().substr(12,90);
+var u=g.replace(".pdf",".jpg")
+	$("#im").val(u);
+	var o1=$("#tybok1").val();
+var o2=$("#tybok2").val();
+$("#q1").val(o1);
+$("#q2").val(o2);
+});
+$("#tybok2").change(function () {
+var o1=$("#tybok1").val();
+var o2=$("#tybok2").val();
+$("#q1").val(o1);
+$("#q2").val(o2);
+});
+
+
+</script>
+{% endblock %}

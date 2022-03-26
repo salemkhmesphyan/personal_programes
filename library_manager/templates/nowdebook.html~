@@ -1,0 +1,10 @@
+{% extends "p1.html" %}
+{% block content %}
+<h1>صفحة الحذف الكتاب</h1>
+
+
+
+
+{% endblock %}
+{% block content1 %}
+{% endblock %}

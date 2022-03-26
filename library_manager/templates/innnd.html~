@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>مُدوّنتي</title>
+  <script src="static/js/jquery.min.js"></script>
+  <style>
+  select:hover{
+width:270px; height:120px;
+background:lightblue; color:navy;
+</style>
+</head>
+<body style="direction: rtl;">
+<center><h3>اهلا بكم في المكتبة الالكترونية</h3><br>
+ <form action="{{ url_for('commodelsssearch') }}" method="POST">
+<label>اختر التخصص:</label><select id='d'>
+	<option>حاسوب</option>    
+    <option>اكتروني</option>
+    <option>كيمياء</option>
+    <option>بترولي</option>
+    <option>مدني</option>
+    </select>
+    <br>
+<label>اختر المجال:</label><select id='di'>
+	<option>برمجة</option>    
+    <option>شبكات</option>
+    </select>
+    <button>عرض الكتب</button>
+    </form><br>
+    <a href="{{ url_for('static', filename='img/12.png')}}"><img src="{{ url_for('static', filename='img/12.png')}}" height="100" width="150" /></a>
+	<br><a href="{{ url_for('static', filename='img/111.pdf')}}"><img src="{{ url_for('static', filename='img/111.pdf')}}" height="100" width="150" /></a>
+<br><input list="mylist">
+<datalist id="mylist">
+<option>HTML</option>
+<option>CSS</option>
+<option>JavaScript</option>
+<option>PHP</option>
+<option>MySQL</option>
+</datalist>
+<script>
+<script>
+$("#d").change(function () {
+	
+
+	
+var p=$("#d").val();
+if(p=="حاسوب"){
+$('#di').html('<option>برمجة</option><option>شبكات</option>');
+}
+if(p=="كيمياء"){
+$('#di').html('<option>المحاليل</option><option>الكربوهيدرات</option>');
+}
+if(p=="بترولي"){
+$('#di').html('<option>جيلوجيا</option><option>مهارات تواصل</option>');
+}
+if(p=="مدني"){
+$('#di').html('<option>رسم هندسي</option><option>البنايات</option>');
+}
+if (p=="اكتروني") {
+	$('#di').html('<option>دوئر اكترونية</option><option>الصمامات</option><option>القياسات</option>');
+}})
+</script>
+</body> 
+</html>

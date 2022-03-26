@@ -1,0 +1,69 @@
+{% extends "p1.html" %}
+{% block content %}
+<div class="container">
+<div class="row">
+<div class="col-md-10 box ">
+{% for message in get_flashed_messages() %}
+    <div class="alert alert-success alert-dismissable" aria-hidden="true">
+<button type="button" class="close" data-dismiss="alert">X</button>    
+    {{ message }} </div>
+    {% endfor %}
+    
+<form role="form" action="{{ url_for('addsec2') }}" method='POST' enctype="multipart/form-data">
+<div class="form-group ">
+<label class="ffo">اضافة</label>
+<select class="form-control" id="tp" name="u0" >
+
+<option >قسم جديد</option>
+<option >فرع جديد</option>
+</select></div>
+<div class="form-group " id="u1">
+<label class="ffo">اسم القسم الجديد</label>
+<input type="text" class="form-control" name="u1" id="u11" required="">
+</div>
+<div class="form-group" id="u2" >
+<label class="ffo">القسم</label>
+<select class="form-control" id="tybok2" name="u2" >
+{% for post in f1 %}
+<option value="{{post[0]}}">{{post[0]}}</option>
+{% endfor %}
+</select></div>
+<div class="form-group " id="u3">
+<label class="ffo">اسم الفرع الجديد</label>
+<input type="text" class="form-control" name="u3" id="u31" required="">
+</div>
+<div class="form-group ">
+
+<input type="submit" id="u4" class="btn-primary btn-lg btn-block" value="اضافة قسم جديد" name="secnew">
+</div>
+</form>
+</div>
+<div class="col-md-2 box ">
+<button class="btn btn-primary" onclick="history.back();">عد الى الصفحة السابقة</button>
+</div>
+</div></div>
+<script>
+$("#u2").hide(2000);
+	$("#u3").hide(2000);
+	$("#u31").val('g');
+$("#tp").change(function () {
+var g=$("#tp").val();
+if (g=='قسم جديد') {
+$("#u1").show(2000);
+	$("#u2").hide(2000);
+	$("#u3").hide(2000);
+	$("#u31").val('g');
+	$("#u11").val('');
+	$("#u4").val("اضافة قسم جديد")
+	}
+	if (g=='فرع جديد') {
+	$("#u1").hide(2000);
+	$("#u2").show(2000);
+	$("#u3").show(2000);
+	$("#u11").val('g');
+	$("#u31").val('');
+	$("#u4").val("اضافة فرع جديد")
+		}
+});
+</script>
+{% endblock %}
