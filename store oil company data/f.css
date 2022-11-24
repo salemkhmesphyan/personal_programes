@@ -1,0 +1,16 @@
+.gg{
+	background-color:#F4CBE6;
+}
+
+table{ border-collapse: collapse; width:100%; }
+th{
+height:25px; text-align:left; vertical-align: top;
+background-color: #620080; color: #e8cbf0;
+}
+th, td{ padding:10px; border-bottom:2px groove #fff; }
+tr{ background-color: #d09de0; }
+QPushButton{border-radius:5px;border:2px solid white;background-color:rgb(84, 158, 255);}
+p{
+font-size: 20px;
+
+}
